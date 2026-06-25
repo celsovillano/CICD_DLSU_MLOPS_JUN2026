@@ -28,7 +28,7 @@ def train(df: pd.DataFrame) -> Pipeline:
             random_state=42,
             penalty='elasticnet',
             solver='saga',
-            l1_ratio='0.5'
+            l1_ratio=0.5
         )
         ),
     ])
