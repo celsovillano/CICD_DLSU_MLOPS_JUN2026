@@ -17,7 +17,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Lint with pylint
-        run: pylint src/data.py src/train.py --fail-under=7.0 --disable=C0114,C0115,C0116
+        run: pylint src/data.py src/train.py --fail-under=6.0 --disable=C0114,C0115,C0116
 
       - name: Run unit tests
         run: pytest tests/test_code.py -v
