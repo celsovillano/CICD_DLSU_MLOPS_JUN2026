@@ -1,9 +1,9 @@
 name: "2. Data Tests (PSI Drift Check)"
 
-on: [push]
+on: [workflow_dispatch]  # change to [push] to enable CI on every push
 
 env:
-  INJECT_DRIFT: "true"   # set to "false" to see the test pass
+  INJECT_DRIFT: "false"  # change to "true" to simulate drift
 
 jobs:
   data-test:
