@@ -1,0 +1,23 @@
+name: "2. Data Tests (PSI Drift Check)"
+
+on: [push]
+
+env:
+  INJECT_DRIFT: "true"   # set to "false" to see the test pass
+
+jobs:
+  data-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run PSI drift check
+        run: pytest tests/test_data.py -v

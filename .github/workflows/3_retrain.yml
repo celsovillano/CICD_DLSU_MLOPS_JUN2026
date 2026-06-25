@@ -1,0 +1,33 @@
+name: "3. Retrain on Drift"
+
+on:
+  workflow_run:
+    workflows: ["2. Data Tests (PSI Drift Check)"]
+    types: [completed]
+
+jobs:
+  retrain:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate current (drifted) data
+        run: INJECT_DRIFT=true python src/data.py
+
+      - name: Retrain model
+        run: python src/train.py
+
+      - name: Upload retrained model as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrained-model
+          path: model/model.joblib
