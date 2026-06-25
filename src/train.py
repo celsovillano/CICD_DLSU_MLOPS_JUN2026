@@ -23,7 +23,14 @@ def train(df: pd.DataFrame) -> Pipeline:
 
     pipeline = Pipeline([
         ("scaler", StandardScaler()),
-        ("clf", LogisticRegression(max_iter=1000, random_state=42)),
+        ("clf", LogisticRegression(
+            max_iter=1000, 
+            random_state=42,
+            penalty='elasticnet',
+            solver='saga',
+            l1_ratio='0.5'
+        )
+        ),
     ])
 
     pipeline.fit(X_train, y_train)

@@ -3,7 +3,7 @@ name: "2. Data Tests (PSI Drift Check)"
 on: [push]  # change to [push] to enable CI on every push
 
 env:
-  INJECT_DRIFT: "false"  # change to "true" to simulate drift
+  INJECT_DRIFT: "true"  # change to "true" to simulate drift
 
 jobs:
   data-test:
