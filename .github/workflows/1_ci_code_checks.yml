@@ -1,6 +1,6 @@
 name: "1. Code Checks (CI)"
 
-on: [workflow_dispatch]  # change to [push] to enable CI on every push
+on: [push]  # change to [push] to enable CI on every push
 
 jobs:
   code-checks:
